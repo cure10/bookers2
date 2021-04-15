@@ -1,0 +1,27 @@
+<%= render 'books/profile.new', book: @book, user: @user %>
+
+  <div class="col-lg-9">
+    <h1>Books</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+        <tr>
+        <%= attachment_image_tag @users, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= book.title %>
+        <%= book.body %>
+        <%= button_to "Edit", {controller: 'books', action: 'edit'}, {method: :get, class: "mybutton"} %>
+        <%= button_to "Destroy", {controller: 'books', action: 'destroy'}, {method: :delete, class: "mybutton"} %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  </div>
+</div>
