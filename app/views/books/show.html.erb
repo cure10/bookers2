@@ -19,6 +19,7 @@
         <%= button_to "Destroy", {controller: 'books', action: 'destroy'}, {method: :delete, class: "mybutton"} %>
         </tr>
         <% end %>
+        <%= paginate @books %>
       </tbody>
     </table>
   </div>

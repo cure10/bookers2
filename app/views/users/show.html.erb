@@ -1,5 +1,26 @@
 <%= render 'books/profile.new', book: @book, user: @user %>
   <div class="col-lg-9">
-    
+    <h1>Books</h1>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+        <tr>
+        <td></td>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        </tr>
+        <% end %>
+        <%= paginate @books %>
+      </tbody>
+    </table>
+  </div>
+
   </div>
 </div>
