@@ -1,25 +1,31 @@
-<%= render 'books/profile.new', book: @book, user: @user %>
+<%= render 'users/profile', user: @user %>
+<<%= render 'books/new', book: @book %>
+
 
   <div class="col-lg-9">
     <h1>Books</h1>
     <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Opinion</th>
-        </tr>
-      </thead>
       <tbody>
         <% @books.each do |book| %>
         <tr>
-        <%= attachment_image_tag @users, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-        <%= book.title %>
-        <%= book.body %>
-        <%= button_to "Edit", {controller: 'books', action: 'edit'}, {method: :get, class: "mybutton"} %>
-        <%= button_to "Destroy", {controller: 'books', action: 'destroy'}, {method: :delete, class: "mybutton"} %>
+          <td>
+          <td>
+          <%= link_to (attachment_image_tag book.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"),user_path(@user) %>
+          <p><%= book.user.name %>
+          </td>
+          <th>
+          <%= link_to book.title,book_path(book) %>
+          </td>
+          <%= book.body %>
+          <td>
+          <% if current_user.id == book.user_id %>
+          <td><%= button_to "Edit", {controller: 'books', action: 'edit'}, {method: :get, class: "mybutton"} %></td>
+          <td><%= button_to "Destroy", {controller: 'books', action: 'destroy'}, {method: :delete,  "data-confirm" => "本当に削除しますか？",class: "mybutton"} %></td>
+          <% end %>
+          </td>
+          </td>
         </tr>
         <% end %>
-        <%= paginate @books %>
       </tbody>
     </table>
   </div>

@@ -1,10 +1,12 @@
-<%= form_with model:@user, url:"/users/#{@user.id}", local:true do |user| %>
-  <h4>Name</h4>
-  <%= user.text_field :name %>
-  <%= attachment_image_tag @user, :profile_image_id, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <label for="inputImage">ProfileImage</label>
-  <%= user.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-  <h4>Introduction</h4>
-  <%= user.text_area :introduction %>
-  <%= user.submit 'UpdateUser' %>
+<h1>User info</h1>
+<%= form_with model:(@user) do |f| %>
+  <div class="user-name">Name</div>
+    <%= f.text_field :name %>
+  <div class="user-edit-image">Image</div>
+    <%= f.attachment_field :profile_image %>
+  <div class="form-body">Introduction</div>
+    <%= f.text_area :introduction %><br>
+  <div class="upload">
+    <%= f.submit " Update User" %>
+  </div>
 <% end %>

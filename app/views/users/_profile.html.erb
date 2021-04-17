@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+
+  <div class="col-lg-3">
+  <h1>User info</h1>
+  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+  <table class="table">
+    <tbody>
+    <tr>
+    <td>name</td>
+    <td><%= user.name %></td>
+    </tr>
+    <tr>
+    <td>introduction</td>
+    <td><%= user.introduction %></td>
+    </tr>
+  </tbody>
+  </table>
+  <%= link_to '',edit_user_path(user), class: "col-sm-12 btn btn-outline-secondary btn-block fas fa-user-cog  edit_user_#{user.id}" %>
