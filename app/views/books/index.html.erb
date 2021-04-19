@@ -1,7 +1,7 @@
   <%= render 'users/profile', user: @user %>
   <<%= render 'books/new', book: @book %>
 
-  <div class="col-lg-9">
+  <div class="col-md-8 offset-md-1">
     <% if @book.errors.any? %>
       <%= @book.errors.count %>errors
       <% @book.errors.full_messages.each do |message| %>
@@ -9,7 +9,7 @@
     <% end %>
     <% end %>
     <h1>Books</h1>
-    <table class="table">
+    <table class="table table-hover table-inverse">
       <thead>
         <tr>
           <th></th>

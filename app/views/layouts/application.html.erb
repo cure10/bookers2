@@ -11,7 +11,7 @@
   </head>
 
   <body>
-     <% if user_signed_in? %>
+
       <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
@@ -23,39 +23,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
           <li class="fas fa-home nav-link text-light"><%= link_to "Home",@user %></li>
-          <li class="fas fa-link nav-link text-light"><%= link_to "Users",users_path %></li>
-          <li class="fas fa-user-plus nav-link text-light"><%= link_to "Books",books_path %></li>
+          <li class="fas fa-users nav-link text-light"><%= link_to "Users",users_path %></li>
+          <li class="fas fa-book-open nav-link text-light"><%= link_to "Books",books_path %></li>
           <li class="fas fa-sign-out-alt nav-link text-light"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-        </ul>
-      </div>
-      </div>
-      </nav>
-    </header>
-    <p class="notice"><%= notice %></p>
-    <% else %>
-       <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-      <a class="navbar-brand" href="/">
-      <span>Bookers</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+           <% else %>
           <li class="fas fa-home nav-link text-light"><%= link_to "Home",root_path %></li>
           <li class="fas fa-link nav-link text-light"><%= link_to "about",home_about_path %></li>
           <li class="fas fa-user-plus nav-link text-light"><%= link_to "Sign up",new_user_registration_path %></li>
           <li class="fas fa-sign-in-alt nav-link text-light"><%= link_to "login",new_user_session_path %></li>
+          <% end %>
         </ul>
       </div>
       </div>
       </nav>
     </header>
     <p class="notice"><%= notice %></p>
-    <% end %>
     <%= yield %>
     <footer>
       <div class="container mt-5">

@@ -12,6 +12,6 @@
   <div>
   <%= book.submit 'Update Book' %>
   </div>
-  <div><%= link_to "Show",book_path(book) %></div>
+  <div><%= link_to "Show",book_path(@book) %></div>
   <div><%= link_to "Back",books_path %></div>
 <% end %>
