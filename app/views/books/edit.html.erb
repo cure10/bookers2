@@ -1,7 +1,7 @@
   <% if @book.errors.any? %>
     <%= @book.errors.count %>error
     <% @book.errors.full_messages.each do |message| %>
-    <%= message %>
+    <p class="error-message"><%= message %></p>
   <% end %>
   <% end %><%= form_with model:@book, local:true do |book| %>
   <h1>Editing Book</h1>
