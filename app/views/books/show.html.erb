@@ -3,6 +3,12 @@
 
 
   <div class="col-md-8 offset-md-1">
+    <% if @book_comment.errors.any? %>
+      <%= @book_comment.errors.count %>errors
+      <% @book_comment.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+    <% end %>
     <h1>Book detail</h1>
     <table class="table">
       <tbody>
