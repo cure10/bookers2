@@ -7,12 +7,20 @@
   <table class="table">
     <tbody>
     <tr>
-    <td>name</td>
-    <td><%= user.name %></td>
+      <td>name</td>
+      <td><%= user.name %></td>
     </tr>
     <tr>
-    <td>introduction</td>
-    <td><%= user.introduction %></td>
+      <td>introduction</td>
+      <td><%= user.introduction %></td>
+    </tr>
+    <tr>
+      <td>follows</td>
+      <td><%= user.relationships.count %></td>
+    </tr>
+    <tr>
+      <td>followers</td>
+      <td><%= user.relationships.count %></td>
     </tr>
   </tbody>
   </table>
