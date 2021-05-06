@@ -1,0 +1,4 @@
+<%= link_to book_favorites_path(book), method: :pos, remote: true do %>
+♡<%= book.favorites.count %>
+<% end %>
+

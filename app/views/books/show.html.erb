@@ -1,14 +1,8 @@
 <%= render 'users/profile', user: @user_profile %>
-<<%= render 'books/new', book: @book_new %>
+<%= render 'books/new', book: @book_new %>
 
 
   <div class="col-md-8 offset-md-1">
-    <% if @book_comment.errors.any? %>
-      <%= @book_comment.errors.count %>errors
-      <% @book_comment.errors.full_messages.each do |message| %>
-      <%= message %>
-      <% end %>
-    <% end %>
     <h1>Book detail</h1>
     <table class="table">
       <tbody>
@@ -24,24 +18,26 @@
           <%= @book.body %>
           </td>
           <% if current_user.id == @book.user_id %>
-          <td><%= link_to "Edit", {controller: 'books', action: 'edit'}, {method: :get, class: "mybutton"} %></td>
-          <td><%= link_to "Destroy", {controller: 'books', action: 'destroy'}, {method: :delete,  "data-confirm" => "本当に削除しますか？",class: "mybutton"} %></td>
-          <% end %>
-          <% if @book.favorited_by?(current_user) %>
-          <td>
-          <%= link_to book_favorites_path(@book), method: :delete do %>
-          ♥<%= @book.favorites.count %>
-          <% end %>
-          </td>
-          <% else %>
-          <td>
-          <%= link_to book_favorites_path(@book), method: :post do %>
-          ♡<%= @book.favorites.count %>
-          <% end %>
-          </td>
+            <td><%= link_to "Edit", {controller: 'books', action: 'edit'}, {method: :get, class: "mybutton"} %></td>
+            <td><%= link_to "Destroy", {controller: 'books', action: 'destroy'}, {method: :delete,  "data-confirm" => "本当に削除しますか？",class: "mybutton"} %></td>
           <% end %>
           <td>コメント件数：<%= @book.book_comments.count %></td>
+
+          <% if book.favorited_by?(current_user) %>
+          <td>
+          <%= link_to book_favorites_path(book), method: :delete do %>
+          ♥<%= book.favorites.count %>
+          <% end %>
+          </td>
+          <td>コメント件数：<%= book.book_comments.count %></td>
+          <% else %>
+          <td class="favorite-btn">
+          <%= render 'favorites/favorite-btn', book: book %>
+          </td>
+          <td>コメント件数：<%= book.book_comments.count %></td>
+          <% end %>
         </tr>
+
         <% @book.book_comments.each do |book_comment| %>
         <tr>
           <td>
