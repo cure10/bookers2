@@ -1,4 +1,12 @@
-<%= link_to book_favorites_path(book), method: :pos, remote: true do %>
-♡<%= book.favorites.count %>
-<% end %>
+    <span class="unfavorite-btn">
+    <%= link_to book_favorites_path(book.id), method: :delete, remote: true do %>
+    ♥<%= book.favorites.count %>
+    <% end %>
+    </span>
+<% else %>
+    <span class="favorite-btn">
+    <%= link_to book_favorites_path(book.id), method: :post, remote: true do %>
+    ♡<%= book.favorites.count %>
+    <% end %>
+    </span>
 
