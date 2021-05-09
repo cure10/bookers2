@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
+    #sign_up時の登録情報追加
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :profle_image, :email, :postal_code, :prefecture_code, :city, :building])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 end
