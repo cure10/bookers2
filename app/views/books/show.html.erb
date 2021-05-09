@@ -24,31 +24,16 @@
           <% end %>
           <td>コメント件数：<%= @book.book_comments.count %></td>
           <td>
-          <% if @book.favorited_by?(current_user) %>
           <%= render 'favorites/favorite-btn', book: @book %>
-          <% end %>
           </td>
         </tr>
-        <% @book.book_comments.each do |book_comment| %>
-        <tr>
-          <td>
-          <%= attachment_image_tag book_comment.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
-          <%= book_comment.user.name %>
-          </td>
-          <td>
-          <%= book_comment.comment %>
-          </td>
-          <td>
-          <% if current_user.id == @book.user_id %>
-           <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
-          <% end %>
-          </td>
-        </tr>
-        <% end %>
       </tbody>
     </table>
-    <div class="new-comment">
-      <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
+    <div class="comment-index">
+      <%= render 'book_comments/comment-index', book: @book  %>
+    </div>
+    <div>
+      <%= form_with model: [@book, @book_comment], remote: true  do |f| %>
       <%= f.text_area :comment %>
       <br><%= f.submit "送信する" %></br>
       <% end %>
